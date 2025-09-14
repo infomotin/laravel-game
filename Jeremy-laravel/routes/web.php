@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\GaugeReading;
+use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
     return view('welcome');
@@ -52,9 +53,14 @@ Route::get('/datainput', function () {
        ];
    };
 
+
+   DB::statement('SET foreign_key_checks = 0');
+   DB::statement('ALTER TABLE gauge_readings DISABLE KEYS');
    foreach (App\Helpers\ArrayHelper::chunkFileAnother($file_path, $genaratedeRow, 1000) as $chunk) {
        GaugeReading::insert($chunk);
    }
-    echo "Data Inserted";
+   DB::statement('SET foreign_key_checks = 1');
+   DB::statement('ALTER TABLE gauge_readings ENABLE KEYS');
+   echo "<h1 class='text-center text-2xl background-green-500 text-white'>Success</h1>";
 });
 
