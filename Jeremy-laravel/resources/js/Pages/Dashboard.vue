@@ -21,9 +21,18 @@ import { Head } from "@inertiajs/vue3";
                     class="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800"
                 >
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        <button class="btn btn-primary" popovertarget="popover">
-                            Popover trigger
-                        </button>
+                        <div class="flex justify-around">
+                            <button class=" btn-primary" popovertarget="popover" popovertargetaction="show">
+                                Popover show
+                            </button>
+                             <button class="btn-secondary" popovertarget="popover" popovertargetaction="close">
+                                Popover close
+                            </button>
+                             <button class="btn-success" popovertarget="popover" popovertargetaction="show">
+                                Popover show
+                            </button>
+                        </div>
+
                     </div>
                     <div popover="auto" id="popover">Message popover</div>
                 </div>
