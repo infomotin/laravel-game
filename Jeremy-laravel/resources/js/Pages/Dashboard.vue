@@ -18,7 +18,7 @@ import { Head } from "@inertiajs/vue3";
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div
-                    class="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800"
+                    class="overflow-hidden bg-blue-200 shadow-sm sm:rounded-lg dark:bg-gray-800"
                 >
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         <div class="flex justify-around">
@@ -34,7 +34,7 @@ import { Head } from "@inertiajs/vue3";
                         </div>
 
                     </div>
-                    <div popover="auto" id="popover">Message popover</div>
+                    <div popover="auto" id="popover" class="overflow-hidden bg-yellow-200 shadow-sm sm:rounded-lg dark:bg-gray-800">Message popover</div>
                 </div>
             </div>
         </div>
