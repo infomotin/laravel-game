@@ -29,22 +29,34 @@ Route::get('/dashboard', function () {
 
     // $data[] = ['time' => $executionTime];
     $data = [];
-    $data['latest'] = Cache::remember('data.latest', [5, 15], function () {
-        $chunk1000 =  GaugeReading::orderBy('id', 'desc')->chunk(10, function ($readings) {
-            $data1 = [];
-            foreach ($readings as $reading) {
-                $data1[] = [
-                    'log_date' => $reading->log_date,
-                    'log_time' => $reading->log_time,
-                    'gauge_one_reading' => $reading->gauge_one_reading,
-                    'gauge_two_reading' => $reading->gauge_two_reading,
-                    'gauge_one_temperature' => $reading->gauge_one_temperature,
-                    'gauge_two_temperature' => $reading->gauge_two_temperature,
-                ];
-            }
-            return $data1;
+    // $data['latest'] = Cache::remember('data.latest', [5, 15], function () {
+    //     $chunk1000 =  GaugeReading::orderBy('id', 'desc')->chunk(10, function ($readings) {
+    //         $data1 = [];
+    //         foreach ($readings as $reading) {
+    //             $data1[] = [
+    //                 'log_date' => $reading->log_date,
+    //                 'log_time' => $reading->log_time,
+    //                 'gauge_one_reading' => $reading->gauge_one_reading,
+    //                 'gauge_two_reading' => $reading->gauge_two_reading,
+    //                 'gauge_one_temperature' => $reading->gauge_one_temperature,
+    //                 'gauge_two_temperature' => $reading->gauge_two_temperature,
+    //             ];
+    //         }
+    //         return $data1;
+    //     });
+    // });
+
+    //get User data
+    $data['user_data'] = Cache::remember('data.user_data', [4, 15], function () {
+        $user_data = User::all();
+        $title = when(true, function () {
+            return "User Data";
+        }, function () {
+            return "No User Data";
         });
+        return ['title' => $title, 'data' => $user_data];
     });
+
     $endTime = microtime(true);
     $executionTime = $endTime - $startTime;
     $data['time'] = $executionTime;
