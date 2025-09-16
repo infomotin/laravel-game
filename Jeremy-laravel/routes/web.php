@@ -1,5 +1,6 @@
 <?php
 
+use App\Facades\Preferences;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -7,6 +8,7 @@ use Inertia\Inertia;
 use App\Models\GaugeReading;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
+// use App\Facades\Preferences;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -19,49 +21,13 @@ use Illuminate\Support\Facades\Cache;
 
 Route::get('/dashboard', function () {
 
-    $startTime = microtime(true);
-    // $table->date('log_date');
-    // $table->time('log_time');
-    // $table->decimal('gauge_one_reading');
-    // $table->decimal('gauge_two_reading');
-    // $table->decimal('gauge_one_temperature',7,3);
-    // $table->decimal('gauge_two_temperature',7,3);
+    Preferences::set('theme', 'dark');
+    $theme = Preferences::get('theme', 'light');
+    // dd($theme);
 
-    // $data[] = ['time' => $executionTime];
-    $data = [];
-    // $data['latest'] = Cache::remember('data.latest', [5, 15], function () {
-    //     $chunk1000 =  GaugeReading::orderBy('id', 'desc')->chunk(10, function ($readings) {
-    //         $data1 = [];
-    //         foreach ($readings as $reading) {
-    //             $data1[] = [
-    //                 'log_date' => $reading->log_date,
-    //                 'log_time' => $reading->log_time,
-    //                 'gauge_one_reading' => $reading->gauge_one_reading,
-    //                 'gauge_two_reading' => $reading->gauge_two_reading,
-    //                 'gauge_one_temperature' => $reading->gauge_one_temperature,
-    //                 'gauge_two_temperature' => $reading->gauge_two_temperature,
-    //             ];
-    //         }
-    //         return $data1;
-    //     });
-    // });
 
-    //get User data
-    $data['user_data'] = Cache::remember('data.user_data', [4, 15], function () {
-        $user_data = User::all();
-        $title = when(true, function () {
-            return "User Data";
-        }, function () {
-            return "No User Data";
-        });
-        return ['title' => $title, 'data' => $user_data];
-    });
-
-    $endTime = microtime(true);
-    $executionTime = $endTime - $startTime;
-    $data['time'] = $executionTime;
-    return Inertia::render('Dashboard', [
-        'gaugeData' => $data
+    return Inertia::render('Dashboard',[
+        'theme' => $theme,
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 

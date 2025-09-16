@@ -13,7 +13,7 @@ class UserPreferencesServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(UserPreferencesService::class, function ($app) {
+        $this->app->bind(UserPreferencesService::class, function () {
             return new UserPreferencesService();
         });
     }

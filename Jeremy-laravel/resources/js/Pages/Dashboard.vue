@@ -24,15 +24,10 @@ const gaugeData = props.gaugeData; // only our data
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             <div class="bg-white p-4 shadow sm:rounded-lg dark:bg-gray-800">
                                 <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
-                                    Gauge Data
+                                     {{ $theme }}
                                 </h2>
                                 <pre class="text-gray-600 dark:text-gray-400">
-                                    <pre>
-                                        <p v-for="(value, key) in gaugeData.user_data" :key="key">
-                                            <strong>{{ key }}:</strong> {{ value }}
-                                        </p>
-                                    </pre>
-
+                                    Your Theme Preference: {{ $theme }}
                                 </pre>
                             </div>
 
@@ -41,7 +36,7 @@ const gaugeData = props.gaugeData; // only our data
                                     Date
                                 </h2>
                                 <p class="text-gray-600 dark:text-gray-400">
-                                   <strong>Execution Time:</strong> {{ gaugeData.time }} seconds
+
                                 </p>
                             </div>
                         </div>
