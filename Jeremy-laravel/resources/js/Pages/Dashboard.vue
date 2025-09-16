@@ -27,8 +27,11 @@ const gaugeData = props.gaugeData; // only our data
                                     Gauge Data
                                 </h2>
                                 <pre class="text-gray-600 dark:text-gray-400">
-                                    {{ gaugeData }}
-                                    <br />
+                                    <pre>
+                                        <p v-for="(value, key) in gaugeData.user_data" :key="key">
+                                            <strong>{{ key }}:</strong> {{ value }}
+                                        </p>
+                                    </pre>
 
                                 </pre>
                             </div>
