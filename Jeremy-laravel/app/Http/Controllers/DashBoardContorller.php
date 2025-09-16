@@ -8,9 +8,9 @@ use Spatie\RouteAttributes\Attributes\Get;
 
 class DashBoardContorller extends Controller
 {
-    #[Get('/dashboard', name: 'dashboard', middleware: ['web', 'auth', 'verified'])]
-    public function index()
-    {
-        return Inertia::render('Dashboard');
-    }
+    // #[Get('/dashboard', name: 'dashboard', middleware: ['web', 'auth', 'verified'])]
+    // public function index()
+    // {
+    //     return Inertia::render('Dashboard');
+    // }
 }

@@ -12,6 +12,7 @@ class GaugeReading extends Model
     /** @use HasFactory<\Database\Factories\GaugeReadingFactory> */
     use HasFactory;
     use Searchable;
+    protected $table = 'gauge_readings';
 
     // protected $guarded = [];
 

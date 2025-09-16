@@ -8,6 +8,7 @@ use Inertia\Inertia;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Spatie\RouteAttributes\Attributes\Defaults;
 
 class HomeController extends Controller
 {
@@ -21,5 +22,11 @@ class HomeController extends Controller
     //     'laravelVersion' => Application::VERSION,
     //     'phpVersion' => PHP_VERSION,
     // ]);
+    }
+    #[Get('/about/{id?}', name: 'about')]
+    #[Defaults('id',1)]
+    public function about($id)
+    {
+        return 'About'.$id;
     }
 }
